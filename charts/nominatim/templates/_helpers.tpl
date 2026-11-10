@@ -100,7 +100,11 @@ pgsql:dbname={{ include "nominatim.databaseName" . }};host={{ include "nominatim
 {{- end }}
 
 {{- define "nominatim.uiUrl" -}}
+{{- if .Values.nominatimUi.customUrl -}}
+{{- .Values.nominatimUi.customUrl -}}
+{{- else -}}
 {{- printf "https://github.com/osm-search/nominatim-ui/releases/download/v%s/nominatim-ui-%s.tar.gz" .Values.nominatimUi.version .Values.nominatimUi.version }}
+{{- end -}}
 {{- end }}
 
 {{/*
